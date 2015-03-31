@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+  
+  <!-- 
+  	init-method : ApplicationContext 에서 해당 bean 이 생성될때 callback 으로 호출됨
+  	destroy-method : ApplicationContext 가 close() 될때 callback 으로 호출됨
+   -->
+  <bean id="myBO" class="kr.pe.ghp.study.spring.bo.MyBO" init-method="beforeHello" destroy-method="afterHello"/>
+</beans>

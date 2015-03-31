@@ -1,0 +1,52 @@
+/*
+ * @(#)PayrollDay.java
+ *
+ * Copyright 2007 NHN Corp. All rights Reserved. 
+ * NHN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ */
+package org.effectivejava.examples.chapter06.item30;
+
+enum PayrollDay {
+	MONDAY(PayType.WEEKDAY), 
+	TUESDAY(PayType.WEEKDAY), 
+	WEDNESDAY(PayType.WEEKDAY), 
+	THURSDAY(PayType.WEEKDAY), 
+	FRIDAY(PayType.WEEKDAY), 
+	SATURDAY(PayType.WEEKEND), 
+	SUNDAY(PayType.WEEKEND);
+
+	private final PayType payType;
+
+	PayrollDay(PayType payType) {
+		this.payType = payType;
+	}
+
+	double pay(double hoursWorked, double payRate) {
+		return payType.pay(hoursWorked, payRate);
+	}
+
+	/**
+	 * 전략 enum 패턴 사용
+	 * @author 박근희
+	 */
+	private enum PayType {
+		WEEKDAY {
+			double overtimePay(double hours, double payRate) {
+				return hours <= HOURS_PER_SHIFT ? 0 : (hours - HOURS_PER_SHIFT) * payRate / 2;
+			}
+		},
+		WEEKEND {
+			double overtimePay(double hours, double payRate) {
+				return hours * payRate / 2;
+			}
+		};
+		private static final int HOURS_PER_SHIFT = 8;
+
+		abstract double overtimePay(double hrs, double payRate);
+
+		double pay(double hoursWorked, double payRate) {
+			double basePay = hoursWorked * payRate;
+			return basePay + overtimePay(hoursWorked, payRate);
+		}
+	}
+}

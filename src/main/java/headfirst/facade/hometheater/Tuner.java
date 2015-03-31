@@ -1,0 +1,43 @@
+/*
+ * @(#)Tuner.java
+ *
+ * Copyright 2007 NHN Corp. All rights Reserved. 
+ * NHN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ */
+package headfirst.facade.hometheater;
+
+public class Tuner {
+	String description;
+	Amplifier amplifier;
+	double frequency;
+
+	public Tuner(String description, Amplifier amplifier) {
+		this.description = description;
+		this.amplifier = amplifier;
+	}
+
+	public void on() {
+		System.out.println(description + " on");
+	}
+
+	public void off() {
+		System.out.println(description + " off");
+	}
+
+	public void setFrequency(double frequency) {
+		System.out.println(description + " setting frequency to " + frequency);
+		this.frequency = frequency;
+	}
+
+	public void setAm() {
+		System.out.println(description + " setting AM mode");
+	}
+
+	public void setFm() {
+		System.out.println(description + " setting FM mode");
+	}
+
+	public String toString() {
+		return description;
+	}
+}
