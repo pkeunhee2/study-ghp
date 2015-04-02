@@ -7,7 +7,6 @@
 package headfirst.templatemethod.barista;
 
 public abstract class CaffeineBeverageWithHook {
-
 	void prepareRecipe() {
 		boilWater();
 		brew();
