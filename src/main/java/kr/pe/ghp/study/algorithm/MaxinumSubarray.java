@@ -21,10 +21,11 @@ public class MaxinumSubarray {
 
 	public static void my1(int[] array) {
 		int maxSum = array[0];
-		int[] sum = new int[array.length];
-
 		int start = 0;
 		int end = 0;
+
+		int[] sum = new int[array.length];
+
 		for (int i = 1; i < array.length; i++) {
 			int newStart = start;
 			int newEnd = end;
@@ -38,17 +39,18 @@ public class MaxinumSubarray {
 				newEnd = i;
 			}
 
-			if (maxSum < array[i] + sum[i - 1]) {
-				maxSum = array[i] + sum[i - 1];
+			if (maxSum < sum[i]) {
+				maxSum = sum[i];
 				start = newStart;
 				end = newEnd;
 			}
 		}
 
 		System.out.println();
-		System.out.println("max sum : " + maxSum);
 		System.out.println("start : " + start);
 		System.out.println("end : " + end);
+		System.out.println("maxSum : " + maxSum);
+
 	}
 
 	/**
